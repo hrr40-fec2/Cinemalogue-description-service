@@ -60,6 +60,5 @@ var addMovieDocuments = function (n) {
   }
 };
 
-console.log(fakeMovie());
-//addMovieDocuments(100);
+addMovieDocuments(100);
 
