@@ -1,7 +1,7 @@
 import React from 'react';
 
 var Ratings = function () {
-  return <h3>Hello, this is Ratings</h3>
+  return <div className="imdbRatings">Hello, this is Ratings</div>;
 }
 
 export default Ratings;
