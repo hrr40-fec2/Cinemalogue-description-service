@@ -23,6 +23,10 @@ app.get('/movies/:id', (req, res) =>  {
   });
 });
 
+app.post('/movies/:id/ratings', (req, res) => {
+  console.log('Request body: ', req.body);
+  res.send();
+});
 
 app.listen(port, function(){
   console.log('Server started at port ', port);
