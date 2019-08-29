@@ -1,29 +1,15 @@
 import React from 'react';
 import Ratings from './Ratings.jsx';
-import $ from 'jquery';
 
 
 class ItemData extends React.Component {
-  //where would movieId/name get selected? presumably by user interaction
-  //on a parent App component, when they click on a movie name or identifier it will setstate/render ItemData
-  //and pass down the selected movie as prop
-
-  constructor (props) {
-    super(props);
-    this.state = {
-      movie: null
-    };
-  }
-
-  componentDidMount () {
-      var url = '/movies/' + this.props.movieID;
-      $.get(url, (movie) => {
-        this.setState({movie: movie[0]});
-      });
-  }
+  //the movie object should be probably passed down as a prop from a parent component rather than fetched inside ItemData
+  //thinking of the page as a whole, each element on the page would use the data for the movie being rendered
+  //and the get request would happen when the whole page renders/rerenders (the movieID for the get request coming from a
+  //click or search by the user) rather than separately for different modules
 
   getMovieDetails () {
-    var {movie} = this.state;
+    var {movie} = this.props;
     if (movie) {
       return (
         <div className="movieDetailsOverview">
@@ -35,7 +21,7 @@ class ItemData extends React.Component {
             <div className="subtext">
               <span>{movie.mpaaRating} | {movie.runtime} | {movie.genres} | {movie.releaseDate} </span>
             </div>
-            <Ratings average={movie.imdbRatingsAverage} amount={movie.imdbRatings}/>
+            <Ratings average={movie.imdbRatingsAverage} amount={movie.imdbRatings} handleRatingInput={this.props.handleRatingInput}/>
           </div>
           <div className="moviesummary">
             <div className="poster">

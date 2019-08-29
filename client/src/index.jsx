@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ItemData from './components/ItemData.jsx';
+import App from './components/App.jsx';
+import $ from 'jquery';
 
-ReactDOM.render(<ItemData movieID={'5d5f2e5eebc81a1179bbbc2a'}/>, document.getElementById('itemdata'));
+ReactDOM.render(<App />, document.getElementById('itemdata'));
+
