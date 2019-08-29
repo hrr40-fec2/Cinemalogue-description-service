@@ -1,6 +1,5 @@
 import React from 'react';
 import Ratings from './Ratings.jsx';
-import $ from 'jquery';
 
 
 class ItemData extends React.Component {
@@ -22,7 +21,7 @@ class ItemData extends React.Component {
             <div className="subtext">
               <span>{movie.mpaaRating} | {movie.runtime} | {movie.genres} | {movie.releaseDate} </span>
             </div>
-            <Ratings average={movie.imdbRatingsAverage} amount={movie.imdbRatings}/>
+            <Ratings average={movie.imdbRatingsAverage} amount={movie.imdbRatings} handleRatingInput={this.props.handleRatingInput}/>
           </div>
           <div className="moviesummary">
             <div className="poster">
