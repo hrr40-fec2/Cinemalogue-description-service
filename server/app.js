@@ -26,10 +26,10 @@ app.get('/movies/:id', (req, res) =>  {
 });
 
 app.post('/movies/:id', (req, res) => {
-  Movies.updateOne({_id: req.params.id}, req.body, (err, movie) => {
+  Movies.update({_id: req.params.id}, req.body, (err, movie) => {
     if (err) {
       console.log('Error updating movie with id ' + req.params.id + ': ', err);
-      Movies.updateOne({title: req.params.id}, req.body, (err, movie) => {
+      Movies.update({title: req.params.id}, req.body, (err, movie) => {
         if (err) {
           console.log('Error updating movie with name ' + req.params.id + ':', err);
         } else {
