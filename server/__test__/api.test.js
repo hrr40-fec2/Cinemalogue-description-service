@@ -67,14 +67,14 @@ describe('test server routes', () => {
     });
 
     //post request using id as a parameter
-    request(app).post('/movies/123').send({imdbRatings: 3, imdbRatingsAverage: 8}).then((response) => {
-      expect(movieData.imdbRatings).toEqual(3);
-      expect(movieData.imdbRatingsAverage).toEqual(8);
-      //reset movieData
-      movieData.imdbRatings = 44;
-      movieData.imdbRatingsAverage = 6.4;
-      done();
-    });
+    // request(app).post('/movies/123').send({imdbRatings: 3, imdbRatingsAverage: 8}).then((response) => {
+    //   expect(movieData.imdbRatings).toEqual(3);
+    //   expect(movieData.imdbRatingsAverage).toEqual(8);
+    //   //reset movieData
+    //   movieData.imdbRatings = 44;
+    //   movieData.imdbRatingsAverage = 6.4;
+    //   done();
+    // });
 
   });
 });
