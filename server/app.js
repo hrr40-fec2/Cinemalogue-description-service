@@ -1,12 +1,13 @@
 var express = require('express');
 var Movies = require('../database/index.js');
+var bodyparser = require('body-parser');
 var app = express();
 
-
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({extended: true}));
 app.use(express.static('public'));
 
 app.get('/movies/:id', (req, res) =>  {
-  console.log('IN GET REQUEST>>>>>>>>>>');
   Movies.find({_id: req.params.id}, (err, movie) => {
     if (err) {
       console.log('Error finding movie with id ' + req.params.id + ': ', err);
@@ -24,9 +25,21 @@ app.get('/movies/:id', (req, res) =>  {
   });
 });
 
-app.post('/movies/:id/ratings', (req, res) => {
-  console.log('Request body: ', req.body);
-  res.send();
+app.post('/movies/:id', (req, res) => {
+  Movies.updateOne({_id: req.params.id}, req.body, (err, movie) => {
+    if (err) {
+      console.log('Error updating movie with id ' + req.params.id + ': ', err);
+      Movies.updateOne({title: req.params.id}, req.body, (err, movie) => {
+        if (err) {
+          console.log('Error updating movie with name ' + req.params.id + ':', err);
+        } else {
+              res.send();
+        }
+      });
+    } else {
+      res.send();
+    }
+  });
 });
 
 module.exports = app;

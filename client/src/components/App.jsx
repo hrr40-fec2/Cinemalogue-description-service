@@ -31,8 +31,8 @@ class App extends React.Component {
 
   handleRatingInput (data) {
     //post the updated ratings data
-    var url = `/movies/${movieID}/ratings`;
-    $.post(url, data, (result) => {
+    var url = '/movies/' + movieID;
+    $.post(url, data).done((result) => {
       //then repeat the get request and rerender
       this.fetchMovieData();
     });
