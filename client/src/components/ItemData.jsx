@@ -1,6 +1,6 @@
 import React from 'react';
 import Ratings from './Ratings.jsx';
-
+import TitleBlock from './TitleBlock.jsx';
 
 class ItemData extends React.Component {
   //the movie object should be probably passed down as a prop from a parent component rather than fetched inside ItemData
@@ -13,7 +13,7 @@ class ItemData extends React.Component {
     if (movie) {
       return (
         <div className="movieDetailsOverview">
-          <div className="titleBlock">
+          <TitleBlock>
             <button className="watchlistRibbon"></button>
             <div className="header">
               <h1>{movie.title}</h1> <h2>{movie.releaseDate}</h2>
@@ -22,7 +22,7 @@ class ItemData extends React.Component {
               <span>{movie.mpaaRating} | {movie.runtime} | {movie.genres} | {movie.releaseDate} </span>
             </div>
             <Ratings average={movie.imdbRatingsAverage} amount={movie.imdbRatings} handleRatingInput={this.props.handleRatingInput}/>
-          </div>
+          </TitleBlock>
           <div className="moviesummary">
             <div className="poster">
               <img src={movie.imageUrl}></img>

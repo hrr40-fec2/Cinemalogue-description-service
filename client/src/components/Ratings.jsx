@@ -59,7 +59,8 @@ class Ratings extends React.Component {
   render () {
     return (
       <div className="imdbRatings">
-        {this.props.average} stars, {this.props.amount} ratings
+        <span>{this.props.average}</span>/10
+        <p>{this.props.amount}</p>
         <RateThisButton onClick={this.handleRateThisClick} ><StarIcon />Rate This</RateThisButton>
         {this.renderRatingForm()}
       </div>
