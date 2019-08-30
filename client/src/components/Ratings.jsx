@@ -1,6 +1,9 @@
 import React from 'react';
 import RateThisButton from './RateThisButton.jsx';
+import RatingInfo from './RatingInfo.jsx';
 import StarIcon from './StarIcon.jsx';
+import StarFull from './StarFull.jsx';
+
 
 class Ratings extends React.Component {
   constructor (props) {
@@ -59,8 +62,10 @@ class Ratings extends React.Component {
   render () {
     return (
       <div className="imdbRatings">
-        <span>{this.props.average}</span>/10
-        <p>{this.props.amount}</p>
+        <RatingInfo>
+          <span>{this.props.average}</span><span>/10</span>
+          <p>{this.props.amount}</p>
+        </RatingInfo>
         <RateThisButton onClick={this.handleRateThisClick} ><StarIcon />Rate This</RateThisButton>
         {this.renderRatingForm()}
       </div>
