@@ -2,12 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import {StarFull} from 'styled-icons/icomoon/StarFull';
 import {StarEmpty} from 'styled-icons/icomoon/StarEmpty';
+import {TimesCircle} from 'styled-icons/fa-solid/TimesCircle';
 
 const EmptyStar = styled(StarEmpty)`
   color: grey;
   width: 28px;
   height: 28px;
   margin: auto 5px auto;
+`;
+
+const StarRadioButton = styled(EmptyStar)`
+  width: 7%;
+  height: 7%;
+  margin: 1px;
 `;
 
 const FullStar = styled(StarFull)`
@@ -17,30 +24,46 @@ const FullStar = styled(StarFull)`
   margin: auto 5px auto;
 `;
 
+
+const SelectedStarRadioButton = styled(FullStar)`
+  color: blue;
+  width: 10%;
+  height: 10%;
+  margin: 0;
+`;
+
+const CancelFormButton = styled(TimesCircle)`
+  border-right: 1px solid grey;
+  padding-right: 5%;
+  color: grey;
+  width: 10%;
+  height: 10%;
+  margin: 0;
+`;
+
 const RatingInfo = styled.div`
   color: #4e4f4f;
   font-size: 15px;
-  width: 40%;
+  width: 45%;
   height: 100%;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  padding: none;
-  margin: none;
+  margin-right: 5%;
 `;
 
 const RateThisButton = styled.div`
   display: flex;
+  align-items: center;
   margin-top: auto;
   margin-bottom: auto;
   font-size: 13px;
-  width: 40%;
+  width: 30%;
   height: 100%;
   color: white;
   background-color: transparent;
   border: none;
   border-left: 1px solid grey;
-  padding: none;
 `;
 
 const RatingAverage = styled.span`
@@ -51,16 +74,33 @@ const RatingAverage = styled.span`
 const RatingsAmount = styled.span`
   padding: none;
   margin: none;
+  font-size: 80%;
+  color: #a5a8a8;
 `;
 
 const RatingsBox = styled.div`
-  width: 180px;
+  width: 200px;
   height: 40px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 `;
 
+const RatingForm = styled.div`
+  margin: 2px;
+`;
+
+const FormContainer = styled.div`
+  width: 150px;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  background-color: #524f49;
+  padding: 4%;
+  border-radius: 5px;
+  border: 1px solid grey;
+`;
 
 class Ratings extends React.Component {
   constructor (props) {
@@ -94,24 +134,27 @@ class Ratings extends React.Component {
   renderRatingForm () {
     if (this.state.displayForm) {
       return (
-        <div className="stars">
-          <form>
-            <input type="radio" name="stars" value="1" onClick={(e) => {this.handleInput(e)}}></input>
-            <input type="radio" name="stars" value="2" onClick={(e) => {this.handleInput(e)}}></input>
-            <input type="radio" name="stars" value="3" onClick={(e) => {this.handleInput(e)}}></input>
-            <input type="radio" name="stars" value="4" onClick={(e) => {this.handleInput(e)}}></input>
-            <input type="radio" name="stars" value="5" onClick={(e) => {this.handleInput(e)}}></input>
-            <input type="radio" name="stars" value="6" onClick={(e) => {this.handleInput(e)}}></input>
-            <input type="radio" name="stars" value="7" onClick={(e) => {this.handleInput(e)}}></input>
-            <input type="radio" name="stars" value="8" onClick={(e) => {this.handleInput(e)}}></input>
-            <input type="radio" name="stars" value="9" onClick={(e) => {this.handleInput(e)}}></input>
-            <input type="radio" name="stars" value="10" onClick={(e) => {this.handleInput(e)}}></input>
-          </form>
-        </div>
+        <FormContainer>
+          <RatingForm>
+            <CancelFormButton></CancelFormButton>
+            {[1,2,3,4,5,6,7,8,9,10].map(value => {
+              return (
+              <label className="star">
+                <input hidden type="radio" name="stars" value={value} onClick={(e) => {this.handleInput(e)}}></input>
+                <StarRadioButton></StarRadioButton>
+              </label>
+              );
+            })}
+          </RatingForm>
+        </FormContainer>
       );
     } else {
       return (
-        <div className="stars"></div>
+        <RatingInfo>
+          <FullStar />
+          <div><RatingAverage>{this.props.average}</RatingAverage>/10</div>
+          <RatingsAmount href="/">{this.props.amount}</RatingsAmount>
+        </RatingInfo>
       );
     }
   }
@@ -119,13 +162,8 @@ class Ratings extends React.Component {
   render () {
     return (
       <RatingsBox>
-        <RatingInfo>
-          <FullStar />
-          <div><RatingAverage>{this.props.average}</RatingAverage>/10</div>
-          <RatingsAmount href="/">{this.props.amount}</RatingsAmount>
-        </RatingInfo>
-        <RateThisButton onClick={this.handleRateThisClick} ><EmptyStar /><span>Rate<br/>This</span></RateThisButton>
         {this.renderRatingForm()}
+        <RateThisButton onClick={this.handleRateThisClick} ><EmptyStar /><span>Rate<br/>This</span></RateThisButton>
       </RatingsBox>
       );
 

@@ -1,10 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import styled from 'styled-components';
 import ItemData from './ItemData.jsx';
 import $ from 'jquery';
 
 //hardcoded movieID because don't have any user input/events and this module only renders details for one movie
-var movieID = '5d5f2e5eebc81a1179bbbc23';
+var movieID = '5d5f2e5eebc81a1179bbbc1e';
+
+const ItemDataContainer = styled.div`
+  position: absolute;
+  top: 75px;
+  width: 75%;
+  font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+  font-size: 16px;
+`;
 
 class App extends React.Component {
   constructor (props) {
@@ -40,7 +49,9 @@ class App extends React.Component {
 
   render () {
     return (
-      <ItemData movie={this.state.movie} handleRatingInput={this.handleRatingInput}/>
+      <ItemDataContainer>
+        <ItemData movie={this.state.movie} handleRatingInput={this.handleRatingInput}/>
+      </ItemDataContainer>
     );
   }
 }
