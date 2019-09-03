@@ -12,10 +12,9 @@ const EmptyStar = styled(StarEmpty)`
 `;
 
 const StarRadioButton = styled(EmptyStar)`
-  width: 7%;
-  height: 7%;
-  margin: 1px;
-`;
+  width: 8%;
+  margin: 0;
+  `;
 
 const FullStar = styled(StarFull)`
   color: yellow;
@@ -24,19 +23,24 @@ const FullStar = styled(StarFull)`
   margin: auto 5px auto;
 `;
 
+const SelectedFullStar = styled(FullStar)`
+  color: #0e8bc4;
+`;
 
 const SelectedStarRadioButton = styled(FullStar)`
-  color: blue;
+  color: #0e8bc4;
+  width: 8%;
   margin: 0;
 `;
 
 const CancelFormButton = styled(TimesCircle)`
   border-right: 1px solid grey;
-  padding-right: 5%;
   color: grey;
   width: 10%;
-  height: 10%;
-  margin: 0;
+  padding: 0 3%;
+  &:hover {
+    color: red;
+  }
 `;
 
 const RatingInfo = styled.div`
@@ -59,52 +63,62 @@ const RateThisButton = styled.div`
   height: 100%;
   color: white;
   border-left: 1px solid grey;
+  &:hover {
+    background-color: #0e8bc4;
+  }
 `;
 
-const RatingAverage = styled.span`
+const LargeRating = styled.span`
   color: white;
   font-size: 23px;
 `;
 
-const RatingsAmount = styled.span`
+const RatingSubtext = styled.span`
   padding: none;
   margin: none;
   font-size: 80%;
   color: #a5a8a8;
+  &: hover {
+    text-decoration: underline;
+    color: #0e8bc4;
+  }
 `;
 
 const RatingsContainer = styled.div`
   position: relative;
-  width: 250px;
+  width: 275px;
   height: 40px;
   display: flex;
   justify-content: flex-end;
 `;
 
 const RatingForm = styled.div`
-  margin: 2px;
+
 `;
 
 const FormContainer = styled.div`
-  position: relative;
-  width: 200px;
+  position: absolute;
+  right: 62px;
+  width: 230px;
+  height: 100%;
   display: flex;
   align-items: center;
   background-color: #524f49;
-  padding: 4%;
+  padding: none;
   border-radius: 5px;
   border: 1px solid grey;
+  margin: 2px;
 `;
 
 class Ratings extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      displayForm: false
+      displayForm: false,
+      cancelFormButtonHover: false,
+      ratingFormHover: false
     };
     this.handleInput = this.handleInput.bind(this);
-    this.handleRateThisClick = this.handleRateThisClick.bind(this);
-    this.handleCancelFormClick = this.handleCancelFormClick.bind(this);
   }
 
   handleInput (e) {
@@ -117,30 +131,41 @@ class Ratings extends React.Component {
       imdbRatings: newAmount,
       imdbRatingsAverage: Number(newAverage)
     }
-    this.setState({displayForm: false});
+    this.setState({displayForm: false, ratingFormHover: false});
     //call method from parent that posts the update, gets new data and rerenders
     this.props.handleRatingInput(data);
   }
 
-  handleRateThisClick () {
-    this.setState({displayForm: true});
-  }
-
-  handleCancelFormClick () {
-    this.setState({displayForm: false});
-  }
-
   renderRatingForm () {
+
+    var getStarIcon = (value) => {
+      if (value <= this.state.ratingFormHover) {
+        return <SelectedStarRadioButton
+          onMouseEnter={() => {this.setState({ratingFormHover: value})}}
+          onMouseLeave={() => {this.setState({ratingFormHover: false})}}>
+        </SelectedStarRadioButton>
+      } else {
+        return <StarRadioButton
+          onMouseEnter={() => {this.setState({ratingFormHover: value})}}
+          onMouseLeave={() => {this.setState({ratingFormHover: false})}}>
+        </StarRadioButton>
+      }
+    };
+
     if (this.state.displayForm) {
       return (
         <FormContainer>
           <RatingForm>
-            <CancelFormButton onClick={this.handleCancelFormClick}></CancelFormButton>
+            <CancelFormButton
+              onClick={() => {this.setState({displayForm: false})}}
+              onMouseEnter={() => {this.setState({ cancelFormButtonHover: true })}}
+              onMouseLeave={() => { this.setState( {cancelFormButtonHover: false} )}}>
+            </CancelFormButton>
             {[1,2,3,4,5,6,7,8,9,10].map(value => {
               return (
               <label className="star">
                 <input hidden type="radio" name="stars" value={value} onClick={(e) => {this.handleInput(e)}}></input>
-                <StarRadioButton></StarRadioButton>
+                {getStarIcon(value)}
               </label>
               );
             })}
@@ -151,10 +176,27 @@ class Ratings extends React.Component {
       return (
         <RatingInfo>
           <FullStar />
-          <div><RatingAverage>{this.props.average}</RatingAverage>/10</div>
-          <RatingsAmount href="/">{this.props.amount}</RatingsAmount>
+          <div><LargeRating>{this.props.average}</LargeRating>/10</div>
+          <RatingSubtext href="/">{this.props.amount}</RatingSubtext>
         </RatingInfo>
       );
+    }
+  }
+
+  getRateThisButton () {
+    if (this.state.ratingFormHover) {
+      return (
+        <RateThisButton>
+          <LargeRating>{this.state.ratingFormHover}</LargeRating>
+          <div>
+            <SelectedFullStar/>
+            <RatingSubtext>You</RatingSubtext>
+          </div>
+        </RateThisButton>
+      );
+    } else {
+      return <RateThisButton onClick={() => {this.setState({displayForm: true})
+    }}><EmptyStar /><span>Rate<br/>This</span></RateThisButton>
     }
   }
 
@@ -162,7 +204,7 @@ class Ratings extends React.Component {
     return (
       <RatingsContainer>
         {this.renderRatingForm()}
-        <RateThisButton onClick={this.handleRateThisClick} ><EmptyStar /><span>Rate<br/>This</span></RateThisButton>
+        {this.getRateThisButton()}
       </RatingsContainer>
       );
 

@@ -15,6 +15,9 @@ const TitleBlock = styled.div`
 
 const WatchlistRibbon = styled(Bookmark)`
   width: 50px;
+  &:hover {
+    color: #4e4f4f;
+  }
 `;
 
 const PlusSign = styled(Plus)`
@@ -35,6 +38,10 @@ const Title = styled.span`
 const Year = styled.span`
   font-size: 25px;
   margin: none;
+  &:hover {
+    color: #0e8bc4;
+    text-decoration: underline;
+  }
 `;
 
 const Subtext = styled.div`
