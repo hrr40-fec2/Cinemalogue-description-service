@@ -37,6 +37,7 @@
     "react-dom": "^16.9.0",
     "react-test-renderer": "^16.9.0",
     "styled-components": "^4.3.2",
+    "styled-icons": "^8.3.0",
     "superagent": "^5.1.0",
     "supertest": "^4.0.2",
     "webpack": "^4.39.2",
