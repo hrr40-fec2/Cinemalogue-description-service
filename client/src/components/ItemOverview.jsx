@@ -16,7 +16,7 @@ const ItemDataContainer = styled.div`
   font-size: 16px;
 `;
 
-class App extends React.Component {
+class ItemOverview extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -57,4 +57,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default ItemOverview;

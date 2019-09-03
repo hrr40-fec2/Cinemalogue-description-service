@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App.jsx';
+import ItemOverview from './components/ItemOverview.jsx';
 import $ from 'jquery';
 
-ReactDOM.render(<App />, document.getElementById('itemdata'));
+ReactDOM.render(<ItemOverview />, document.getElementById('itemdata'));
 
