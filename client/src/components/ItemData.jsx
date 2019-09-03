@@ -19,7 +19,7 @@ class ItemData extends React.Component {
       );
     } else {
       return (
-       <div className="movieDetailsOverview">
+        <div className="movieDetailsOverview">
           Loading...
         </div>
       );

@@ -19,7 +19,7 @@ var generateGenres = function () {
     movieGenres.push(genre);
   }
   return movieGenres;
-}
+};
 
 var generateReleaseDate = function () {
   //day, month, year
@@ -27,7 +27,7 @@ var generateReleaseDate = function () {
   var month = faker.date.month();
   var year = faker.random.number({min: 1970, max: 2019});
   return `${day} ${month} ${year}`;
-}
+};
 
 var fakeMovie = function () {
   var movie = {};

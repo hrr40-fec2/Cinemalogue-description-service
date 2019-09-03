@@ -66,6 +66,6 @@ const TitleOverview = ({movie, handleRatingInput}) => {
     </TitleBlock>
 
   );
-}
+};
 
 export default TitleOverview;

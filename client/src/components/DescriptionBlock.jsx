@@ -26,15 +26,15 @@ const Details = styled.div`
 const DescriptionBlock = ({movie}) => {
   return (
     <Block>
-        <Poster src={movie.imageUrl}></Poster>
-        <Details>
-          <p>{movie.blurb}</p>
-          <span>Director: <a href="/">{movie.director}</a></span>
-          <span>Writer: <a href="/">{movie.writer}</a></span>
-          <span>Stars: <a href="/">{movie.stars[0]}</a>, <a href="/">{movie.stars[1]}</a>, <a href="/">{movie.stars[2]}</a></span>
-        </Details>
+      <Poster src={movie.imageUrl}></Poster>
+      <Details>
+        <p>{movie.blurb}</p>
+        <span>Director: <a href="/">{movie.director}</a></span>
+        <span>Writer: <a href="/">{movie.writer}</a></span>
+        <span>Stars: <a href="/">{movie.stars[0]}</a>, <a href="/">{movie.stars[1]}</a>, <a href="/">{movie.stars[2]}</a></span>
+      </Details>
     </Block>
   );
-}
+};
 
 export default DescriptionBlock;

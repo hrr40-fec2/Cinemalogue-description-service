@@ -130,7 +130,7 @@ class Ratings extends React.Component {
     var data = {
       imdbRatings: newAmount,
       imdbRatingsAverage: Number(newAverage)
-    }
+    };
     this.setState({displayForm: false, ratingFormHover: false});
     //call method from parent that posts the update, gets new data and rerenders
     this.props.handleRatingInput(data);
@@ -141,14 +141,14 @@ class Ratings extends React.Component {
     var getStarIcon = (value) => {
       if (value <= this.state.ratingFormHover) {
         return <SelectedStarRadioButton
-          onMouseEnter={() => {this.setState({ratingFormHover: value})}}
-          onMouseLeave={() => {this.setState({ratingFormHover: false})}}>
-        </SelectedStarRadioButton>
+          onMouseEnter={() => { this.setState({ ratingFormHover: value }); }}
+          onMouseLeave={() => { this.setState({ ratingFormHover: false }); }}>
+        </SelectedStarRadioButton>;
       } else {
         return <StarRadioButton
-          onMouseEnter={() => {this.setState({ratingFormHover: value})}}
-          onMouseLeave={() => {this.setState({ratingFormHover: false})}}>
-        </StarRadioButton>
+          onMouseEnter={() => { this.setState({ratingFormHover: value}); }}
+          onMouseLeave={() => { this.setState({ratingFormHover: false}); }}>
+        </StarRadioButton>;
       }
     };
 
@@ -157,16 +157,16 @@ class Ratings extends React.Component {
         <FormContainer>
           <RatingForm>
             <CancelFormButton
-              onClick={() => {this.setState({displayForm: false})}}
-              onMouseEnter={() => {this.setState({ cancelFormButtonHover: true })}}
-              onMouseLeave={() => { this.setState( {cancelFormButtonHover: false} )}}>
+              onClick={() => { this.setState({displayForm: false}); }}
+              onMouseEnter={() => { this.setState({ cancelFormButtonHover: true }); }}
+              onMouseLeave={() => { this.setState({cancelFormButtonHover: false}); }}>
             </CancelFormButton>
-            {[1,2,3,4,5,6,7,8,9,10].map(value => {
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(value => {
               return (
-              <label className="star">
-                <input hidden type="radio" name="stars" value={value} onClick={(e) => {this.handleInput(e)}}></input>
-                {getStarIcon(value)}
-              </label>
+                <label className="star">
+                  <input hidden type="radio" name="stars" value={value} onClick={(e) => { this.handleInput(e); }}></input>
+                  {getStarIcon(value)}
+                </label>
               );
             })}
           </RatingForm>
@@ -195,8 +195,7 @@ class Ratings extends React.Component {
         </RateThisButton>
       );
     } else {
-      return <RateThisButton onClick={() => {this.setState({displayForm: true})
-    }}><EmptyStar /><span>Rate<br/>This</span></RateThisButton>
+      return <RateThisButton onClick={() => { this.setState({displayForm: true}); }}><EmptyStar /><span>Rate<br/>This</span></RateThisButton>;
     }
   }
 
@@ -206,7 +205,7 @@ class Ratings extends React.Component {
         {this.renderRatingForm()}
         {this.getRateThisButton()}
       </RatingsContainer>
-      );
+    );
 
   }
 

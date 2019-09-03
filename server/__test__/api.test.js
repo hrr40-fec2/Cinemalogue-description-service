@@ -35,11 +35,11 @@ describe('test server routes', () => {
   //function to replace updateOne
   const updateMock = (query, data) => {
     //query is empty and data is undefined.
-    console.log('QUERY: ', query, "DATA", data);
-    if(query.getQuery()._id === '123') {
+    console.log('QUERY: ', query, 'DATA', data);
+    if (query.getQuery()._id === '123') {
       movieData.imdbRatings = data.imdbRatings;
       movieData.imdbRatingsAverage = data.imdbRatingsAverage;
-    } else if(query.getQuery()._id === 'Title') {
+    } else if (query.getQuery()._id === 'Title') {
       movieData.imdbRatings = data.imdbRatings;
       movieData.imdbRatingsAverage = data.imdbRatingsAverage;
     } else {

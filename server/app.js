@@ -7,7 +7,7 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: true}));
 app.use(express.static('public'));
 
-app.get('/movies/:id', (req, res) =>  {
+app.get('/movies/:id', (req, res) => {
   Movies.find({_id: req.params.id}, (err, movie) => {
     if (err) {
       console.log('Error finding movie with id ' + req.params.id + ': ', err);
@@ -33,7 +33,7 @@ app.post('/movies/:id', (req, res) => {
         if (err) {
           console.log('Error updating movie with name ' + req.params.id + ':', err);
         } else {
-              res.send();
+          res.send();
         }
       });
     } else {

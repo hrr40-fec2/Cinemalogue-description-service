@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import Ratings from '../Ratings.jsx';
-import "./setupTests";
+import './setupTests';
 
 
 var fakeMovie = {
@@ -25,7 +25,7 @@ describe ('Ratings', () => {
 
   afterEach(() => {
     if (spy) {
-      spy.mockClear()
+      spy.mockClear();
     }
   });
 
@@ -60,15 +60,15 @@ describe ('Ratings', () => {
     //simulate click events on different radio buttons
     component.find('input').last().simulate('click');
     expect(instance.handleInput).toHaveBeenCalledWith(expect.objectContaining({
-      "type": 'click'
-     }));
+      'type': 'click'
+    }));
 
   });
 
   it('should call handleInput with an event object containing the correct value', () => {
     const component = mount(<Ratings average={fakeMovie.imdbRatingsAverage} amount={fakeMovie.imdbRatings} handleRatingInput={() => {}}/>);
     var instance = component.instance();
-    instance.handleInput = jest.fn((event) => {return event.target.value;});
+    instance.handleInput = jest.fn((event) => { return event.target.value; });
     spy = jest.spyOn(instance, 'handleInput');
     component.find('input').at(3).simulate('click');
     component.find('input').at(6).simulate('click');
@@ -88,9 +88,9 @@ describe ('Ratings', () => {
     //call the event handler with mock event
     var fakeClickEvent = {
       target: {value: '8'}
-    }
+    };
     component.handleInput(fakeClickEvent);
     expect(handleInputMock).toHaveBeenCalledWith({imdbRatings: 11,
       imdbRatingsAverage: 3.5});
-    });
+  });
 });

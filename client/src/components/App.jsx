@@ -35,8 +35,8 @@ class App extends React.Component {
   fetchMovieData () {
     var url = '/movies/' + movieID;
     $.get(url, (movie) => {
-        this.setState({movie: movie[0]});
-      });
+      this.setState({movie: movie[0]});
+    });
   }
 
   handleRatingInput (data) {
