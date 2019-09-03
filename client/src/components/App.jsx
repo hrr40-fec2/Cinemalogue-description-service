@@ -10,6 +10,7 @@ var movieID = '5d5f2e5eebc81a1179bbbc1e';
 const ItemDataContainer = styled.div`
   position: absolute;
   top: 75px;
+  left: 100px;
   width: 75%;
   font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
   font-size: 16px;

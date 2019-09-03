@@ -27,8 +27,6 @@ const FullStar = styled(StarFull)`
 
 const SelectedStarRadioButton = styled(FullStar)`
   color: blue;
-  width: 10%;
-  height: 10%;
   margin: 0;
 `;
 
@@ -44,7 +42,7 @@ const CancelFormButton = styled(TimesCircle)`
 const RatingInfo = styled.div`
   color: #4e4f4f;
   font-size: 15px;
-  width: 45%;
+  width: 35%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -57,12 +55,9 @@ const RateThisButton = styled.div`
   align-items: center;
   margin-top: auto;
   margin-bottom: auto;
-  font-size: 13px;
-  width: 30%;
+  font-size: 11px;
   height: 100%;
   color: white;
-  background-color: transparent;
-  border: none;
   border-left: 1px solid grey;
 `;
 
@@ -78,13 +73,12 @@ const RatingsAmount = styled.span`
   color: #a5a8a8;
 `;
 
-const RatingsBox = styled.div`
-  width: 200px;
+const RatingsContainer = styled.div`
+  position: relative;
+  width: 250px;
   height: 40px;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-end;
 `;
 
 const RatingForm = styled.div`
@@ -92,8 +86,8 @@ const RatingForm = styled.div`
 `;
 
 const FormContainer = styled.div`
-  width: 150px;
-  height: 80%;
+  position: relative;
+  width: 200px;
   display: flex;
   align-items: center;
   background-color: #524f49;
@@ -110,6 +104,7 @@ class Ratings extends React.Component {
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleRateThisClick = this.handleRateThisClick.bind(this);
+    this.handleCancelFormClick = this.handleCancelFormClick.bind(this);
   }
 
   handleInput (e) {
@@ -131,12 +126,16 @@ class Ratings extends React.Component {
     this.setState({displayForm: true});
   }
 
+  handleCancelFormClick () {
+    this.setState({displayForm: false});
+  }
+
   renderRatingForm () {
     if (this.state.displayForm) {
       return (
         <FormContainer>
           <RatingForm>
-            <CancelFormButton></CancelFormButton>
+            <CancelFormButton onClick={this.handleCancelFormClick}></CancelFormButton>
             {[1,2,3,4,5,6,7,8,9,10].map(value => {
               return (
               <label className="star">
@@ -161,10 +160,10 @@ class Ratings extends React.Component {
 
   render () {
     return (
-      <RatingsBox>
+      <RatingsContainer>
         {this.renderRatingForm()}
         <RateThisButton onClick={this.handleRateThisClick} ><EmptyStar /><span>Rate<br/>This</span></RateThisButton>
-      </RatingsBox>
+      </RatingsContainer>
       );
 
   }
