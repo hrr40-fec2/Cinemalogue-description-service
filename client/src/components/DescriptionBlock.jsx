@@ -10,7 +10,7 @@ const Block = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  height: 280px;
+  height: 300px;
   border-bottom: 1px solid grey;
 `;
 

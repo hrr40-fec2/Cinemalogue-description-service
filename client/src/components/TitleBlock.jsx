@@ -29,13 +29,13 @@ const Header = styled.div`
   flex-wrap: wrap;
 `;
 
-const Title = styled.span`
+const MovieTitle = styled.span`
   color: white;
   font-size: 170%;
   margin: none;
   `;
 
-const Year = styled.span`
+const MovieYear = styled.span`
   font-size: 25px;
   margin: none;
   &:hover {
@@ -55,7 +55,7 @@ const TitleOverview = ({movie, handleRatingInput}) => {
         <WatchlistRibbon><PlusSign></PlusSign></WatchlistRibbon>
         <div className="movieinfo">
           <div className="titleAndYear">
-            <Title>{movie.title}</Title> <Year>({movie.releaseDate.split(' ')[2]})</Year>
+            <MovieTitle>{movie.title}</MovieTitle> <MovieYear>({movie.releaseDate.split(' ')[2]})</MovieYear>
           </div>
           <Subtext>
             <span>{movie.mpaaRating} | {movie.runtime} | {movie.genres[0]}, {movie.genres[1]}, {movie.genres[2]} | {movie.releaseDate} </span>
@@ -64,7 +64,6 @@ const TitleOverview = ({movie, handleRatingInput}) => {
       </Header>
       <Ratings average={movie.imdbRatingsAverage} amount={movie.imdbRatings} handleRatingInput={handleRatingInput}/>
     </TitleBlock>
-
   );
 };
 

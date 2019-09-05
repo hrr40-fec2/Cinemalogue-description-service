@@ -8,10 +8,6 @@ import $ from 'jquery';
 var movieID = '5d5f2e5eebc81a1179bbbc1e';
 
 const ItemDataContainer = styled.div`
-  position: absolute;
-  top: 75px;
-  left: 100px;
-  width: 75%;
   font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
   font-size: 16px;
 `;
@@ -33,7 +29,7 @@ class ItemOverview extends React.Component {
   }
 
   fetchMovieData () {
-    var url = '/movies/' + movieID;
+    var url = 'http://localhost:3002/movies/' + movieID;
     $.get(url, (movie) => {
       this.setState({movie: movie[0]});
     });
