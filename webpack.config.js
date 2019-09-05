@@ -1,3 +1,5 @@
+var path = require('path');
+
 module.exports = {
   entry: __dirname + '/client/src/index.jsx',
   module: {
@@ -17,5 +19,19 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: __dirname + '/public'
+  },
+  optimization: {
+    runtimeChunk: {
+      name: 'vendors'
+    },
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/](styled-components)[\\/]/,
+          name: 'vendor',
+          chunks: 'all'
+        }
+      }
+    }
   }
 };
