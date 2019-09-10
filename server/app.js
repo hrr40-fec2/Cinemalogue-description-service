@@ -9,6 +9,17 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: true}));
 app.use(express.static('public'));
 
+app.get('/movies/random_id', (req, res) => {
+  var random = Math.floor(Math.random() * 100);
+  Movies.findOne().skip(random).exec((err, movie) => {
+    if (err) {
+      console.log('Error finding movie ', err);
+    } else {
+      res.send(movie._id);
+    }
+  });
+});
+
 app.get('/movies/:id', (req, res) => {
   Movies.find({_id: req.params.id}, (err, movie) => {
     if (err) {
@@ -26,6 +37,7 @@ app.get('/movies/:id', (req, res) => {
     }
   });
 });
+
 
 app.post('/movies/:id', (req, res) => {
   Movies.update({_id: req.params.id}, req.body, (err, movie) => {

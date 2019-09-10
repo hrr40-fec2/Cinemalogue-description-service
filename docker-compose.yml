@@ -1,0 +1,25 @@
+version: "3.7"
+services:
+
+  mongo:
+    container_name: "mongo"
+    image: "mongo"
+    ports:
+      - "27017:27017"
+
+  item-data-service:
+    build: "./"
+    ports:
+      - "3002:3002"
+    depends_on:
+      - "mongo"
+    links:
+      - "mongo"
+    environment:
+      WAIT_HOSTS: "mongo:27017"
+
+
+
+
+
+

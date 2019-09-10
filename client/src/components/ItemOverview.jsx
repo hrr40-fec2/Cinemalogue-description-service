@@ -4,9 +4,6 @@ import styled from 'styled-components';
 import ItemData from './ItemData.jsx';
 import $ from 'jquery';
 
-//hardcoded movieID because don't have any user input/events and this module only renders details for one movie
-var movieID = '5d5f2e5eebc81a1179bbbc1e';
-
 const ItemDataContainer = styled.div`
   font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
   font-size: 16px;
@@ -29,18 +26,27 @@ class ItemOverview extends React.Component {
   }
 
   fetchMovieData () {
-    var url = 'http://localhost:3002/movies/' + movieID;
+  //we'll use a random movieID because we don't currently have any user input/events and this module only renders details for one movie
+  //hence first make a request to get a random movieID from the database, then make the API call for the movie itself
+  var url = '/movies/random_id';
+  $.get(url, (movieID) => {
+    url = '/movies/' + movieID;
     $.get(url, (movie) => {
       this.setState({movie: movie[0]});
+      });
     });
+
   }
 
   handleRatingInput (data) {
     //post the updated ratings data
+    var movieID = this.state.movie._id;
     var url = '/movies/' + movieID;
     $.post(url, data).done((result) => {
       //then repeat the get request and rerender
-      this.fetchMovieData();
+      $.get(url, (movie) => {
+        this.setState({movie: movie[0]});
+        });
     });
   }
 
