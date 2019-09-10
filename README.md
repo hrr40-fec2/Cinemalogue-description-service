@@ -1,39 +1,12 @@
-# Project Name
+Cinemalogue
 
-> Project description
+Item Overview Module
+This service belongs on an item detail page for the app. It displays a summary overview of important details about the selected movie item at a glance, and gives the user a front and center location to perform some commonly used functions such as adding a rating to the movie, and potentially bookmarking it or navigating to related pages.
 
-## Related Projects
+Navigate to the root directory, then
+install dependencies: npm install
+seed the database with fake movie data: npm run db:seed
+run unit tests with npm test
+start the server with npm start
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-
-## Table of Contents
-
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
-
-## Usage
-
-> Some usage instructions
-
-## Requirements
-
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
-- Node 6.13.0
-- etc
-
-## Development
-
-### Installing Dependencies
-
-From within the root directory:
-
-```sh
-npm install -g webpack
-npm install
-```
 
