@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
-import App from '../App.jsx';
+import ItemOverview from '../ItemOverview.jsx';
 import "./setupTests";
 jest.mock('jquery');
 
@@ -20,7 +20,7 @@ var fakeMovie = {
 };
 
 
-describe('App', () => {
+describe('ItemOverview', () => {
   var spy;
 
   afterEach(() => {
@@ -30,18 +30,18 @@ describe('App', () => {
   });
 
   it('should have ItemData as a child component', () => {
-    var component = mount(<App />);
+    var component = mount(<ItemOverview />);
     component.containsMatchingElement('ItemData');
   });
 
   it('should call fetchMovieData on mount', () => {
-    spy = jest.spyOn(App.prototype, 'fetchMovieData');
-    var component = mount(<App />);
+    spy = jest.spyOn(ItemOverview.prototype, 'fetchMovieData');
+    var component = mount(<ItemOverview />);
     expect(spy).toHaveBeenCalled();
   });
 
   it('should set state.movie with the fetched movie data', () => {
-    var component = mount(<App />);
+    var component = mount(<ItemOverview />);
     expect(component.state('movie')).toEqual(fakeMovie);
   });
 
