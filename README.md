@@ -7,9 +7,14 @@ This service is the central module for an item detail page on Cinemalogue. It di
 
 # Setup
 Navigate to the root directory, then:
-Install dependencies with ```bash npm install```
-Seed the database: ```bash npm run db:seed```
-Run unit tests: ```bash npm test```
-Start the node server: ```bash npm start```
+
+Install dependencies with ```sh npm install```
+
+Seed the database: ```sh npm run db:seed```
+
+Run unit tests: ```sh npm test```
+
+Start the node server: ```sh npm start```
+
 
 
