@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import ItemData from './ItemData.jsx';
 import $ from 'jquery';
@@ -21,13 +20,12 @@ class ItemOverview extends React.Component {
 
   componentDidMount () {
     this.fetchMovieData();
-    //Fetching the movie data would likely actually happen within click and/or search input event in which user selects a movie,
-    //the movieID being passed in as an argument inside the parent handler that gets called after an event in a child component
   }
 
   fetchMovieData () {
-  //we'll use a random movieID because we don't currently have any user input/events and this module only renders details for one movie
-  //hence first make a request to get a random movieID from the database, then make the API call for the movie itself
+  //Get a random movie from the database to display. This is for demoing the
+  //service as an independent unit. When connected to other services, the
+  //movieID would hearken from user input/events and the first get request should be removed
   var url = '/movies/random_id';
   $.get(url, (movieID) => {
     url = '/movies/' + movieID;
@@ -39,11 +37,9 @@ class ItemOverview extends React.Component {
   }
 
   handleRatingInput (data) {
-    //post the updated ratings data
     var movieID = this.state.movie._id;
     var url = '/movies/' + movieID;
     $.post(url, data).done((result) => {
-      //then repeat the get request and rerender
       $.get(url, (movie) => {
         this.setState({movie: movie[0]});
         });

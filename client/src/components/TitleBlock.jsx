@@ -1,6 +1,6 @@
-import styled from 'styled-components';
 import React from 'react';
 import Ratings from './Ratings.jsx';
+import styled from 'styled-components';
 import {Bookmark} from 'styled-icons/icomoon/Bookmark';
 import {Plus} from 'styled-icons/fa-solid/Plus';
 
@@ -33,7 +33,7 @@ const MovieTitle = styled.span`
   color: white;
   font-size: 170%;
   margin: none;
-  `;
+`;
 
 const MovieYear = styled.span`
   font-size: 25px;
@@ -52,7 +52,7 @@ const TitleOverview = ({movie, handleRatingInput}) => {
   return (
     <TitleBlock>
       <Header>
-        <WatchlistRibbon><PlusSign></PlusSign></WatchlistRibbon>
+        <WatchlistRibbon><PlusSign/></WatchlistRibbon>
         <div className="movieinfo">
           <div className="titleAndYear">
             <MovieTitle>{movie.title}</MovieTitle> <MovieYear>({movie.releaseDate.split(' ')[2]})</MovieYear>

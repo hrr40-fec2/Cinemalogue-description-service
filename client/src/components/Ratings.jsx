@@ -14,7 +14,7 @@ const EmptyStar = styled(StarEmpty)`
 const StarRadioButton = styled(EmptyStar)`
   width: 8%;
   margin: 0;
-  `;
+`;
 
 const FullStar = styled(StarFull)`
   color: yellow;
@@ -78,7 +78,7 @@ const RatingSubtext = styled.span`
   margin: none;
   font-size: 80%;
   color: #a5a8a8;
-  &: hover {
+  &:hover {
     text-decoration: underline;
     color: #0e8bc4;
   }
@@ -93,7 +93,6 @@ const RatingsContainer = styled.div`
 `;
 
 const RatingForm = styled.div`
-
 `;
 
 const FormContainer = styled.div`
@@ -124,7 +123,6 @@ class Ratings extends React.Component {
   handleInput (e) {
     var {average, amount} = this.props;
     var newRating = Number(e.target.value);
-    //calculate new values for average rating and amount of ratings
     var newAverage = ((average * amount + newRating) / (amount + 1)).toFixed(1);
     var newAmount = amount + 1;
     var data = {
@@ -132,23 +130,19 @@ class Ratings extends React.Component {
       imdbRatingsAverage: Number(newAverage)
     };
     this.setState({displayForm: false, ratingFormHover: false});
-    //call method from parent that posts the update, gets new data and rerenders
     this.props.handleRatingInput(data);
   }
 
   renderRatingForm () {
-
     var getStarIcon = (value) => {
       if (value <= this.state.ratingFormHover) {
         return <SelectedStarRadioButton
           onMouseEnter={() => { this.setState({ ratingFormHover: value }); }}
-          onMouseLeave={() => { this.setState({ ratingFormHover: false }); }}>
-        </SelectedStarRadioButton>;
+          onMouseLeave={() => { this.setState({ ratingFormHover: false }); }}/>;
       } else {
         return <StarRadioButton
           onMouseEnter={() => { this.setState({ratingFormHover: value}); }}
-          onMouseLeave={() => { this.setState({ratingFormHover: false}); }}>
-        </StarRadioButton>;
+          onMouseLeave={() => { this.setState({ratingFormHover: false}); }}/>;
       }
     };
 
@@ -206,9 +200,7 @@ class Ratings extends React.Component {
         {this.getRateThisButton()}
       </RatingsContainer>
     );
-
   }
-
 }
 
 export default Ratings;

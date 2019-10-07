@@ -1,6 +1,9 @@
 var addMoviesToDatabase = require('./utils/addMovieDocuments.js');
 
-addMoviesToDatabase(100);
+//The amount of fake movie records to generate and add
+var moviesAmount = 100;
+
+addMoviesToDatabase(moviesAmount);
 
 
 

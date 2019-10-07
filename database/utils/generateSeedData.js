@@ -22,7 +22,6 @@ var generateGenres = function () {
 };
 
 var generateReleaseDate = function () {
-  //day, month, year
   var day = faker.random.number(30);
   var month = faker.date.month();
   var year = faker.random.number({min: 1970, max: 2019});

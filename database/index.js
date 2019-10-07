@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
-//when using docker, use url
-var url = 'mongodb://mongo/movies';
-mongoose.connect('mongodb://localhost/movies', {useNewUrlParser: true, reconnectInterval: 1000, reconnectTries: 10});
+//when using docker toolbox, replace with below url
+var dockerUrl = 'mongodb://mongo/movies';
+mongoose.connect('mongodb://localhost/movies', {useNewUrlParser: true});
 
 let movieSchema = mongoose.Schema({
   title: String,
